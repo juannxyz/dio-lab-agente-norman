@@ -48,17 +48,11 @@ Acessível, cordial, objetivo e profissional. Norman evita termos técnicos desn
 ```mermaid
 flowchart TD
     A[Cliente] -->|Mensagem| B[Interface]
-    B --> C[Norman: lógica do agente]
+    B --> C[LLM]
     C --> D[Base de Conhecimento]
-    D --> D1[Transações CSV]
-    D --> D2[Perfil do investidor JSON]
-    D --> D3[Histórico de atendimento CSV]
-    D --> D4[Produtos financeiros JSON]
     D --> C
-    C --> E[LLM nativa]
-    E --> F[Validação e regras de segurança]
-    F --> G[Resposta personalizada]
-    G --> A
+    C --> E[Validação]
+    E --> F[Resposta]
 ```
 
 ### Componentes
