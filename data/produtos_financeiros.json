@@ -3,15 +3,15 @@
     "nome": "Tesouro Selic",
     "categoria": "renda_fixa",
     "risco": "baixo",
-    "rentabilidade": "100% da Selic",
-    "aporte_minimo": 30.00,
+    "rentabilidade": "100% da Selic (14,25% a.a.)",
+    "aporte_minimo": 1.00,
     "indicado_para": "Reserva de emergência e iniciantes"
   },
   {
     "nome": "CDB Liquidez Diária",
     "categoria": "renda_fixa",
     "risco": "baixo",
-    "rentabilidade": "102% do CDI",
+    "rentabilidade": "102% do CDI (aprox. 14,43% a.a.)",
     "aporte_minimo": 100.00,
     "indicado_para": "Quem busca segurança com rendimento diário"
   },
@@ -19,15 +19,15 @@
     "nome": "LCI/LCA",
     "categoria": "renda_fixa",
     "risco": "baixo",
-    "rentabilidade": "95% do CDI",
+    "rentabilidade": "95% do CDI (aprox. 13,44% a.a., isento de IR para pessoa física)",
     "aporte_minimo": 1000.00,
-    "indicado_para": "Quem pode esperar 90 dias (isento de IR)"
+    "indicado_para": "Quem pode esperar pelo menos 6 meses (isento de IR para pessoa física)"
   },
   {
     "nome": "Fundo Multimercado",
     "categoria": "fundo",
     "risco": "medio",
-    "rentabilidade": "CDI + 2%",
+    "rentabilidade": "Variável; pode buscar CDI + 2%",
     "aporte_minimo": 500.00,
     "indicado_para": "Perfil moderado que busca diversificação"
   },
