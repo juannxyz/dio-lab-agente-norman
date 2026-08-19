@@ -1,149 +1,75 @@
-# 🤖 Agente Financeiro Inteligente com IA Generativa
+# Norman — Assistente Financeiro
 
-## Contexto
+Norman é um assistente financeiro educativo feito com Python, Streamlit e uma LLM acessada pela OpenRouter. Ele usa dados fictícios para ajudar o usuário a entender gastos, acompanhar metas e conhecer produtos financeiros disponíveis.
 
-Os assistentes virtuais no setor financeiro estão evoluindo de simples chatbots reativos para **agentes inteligentes e proativos**. Neste desafio, você vai idealizar e prototipar um agente financeiro que utiliza IA Generativa para:
+> Os dados deste projeto são somente para demonstração. Norman não realiza investimentos, movimentações financeiras ou previsões de rendimento.
 
-- **Antecipar necessidades** ao invés de apenas responder perguntas
-- **Personalizar** sugestões com base no contexto de cada cliente
-- **Cocriar soluções** financeiras de forma consultiva
-- **Garantir segurança** e confiabilidade nas respostas (anti-alucinação)
+## O que o Norman faz
 
-> [!TIP]
-> Na pasta [`examples/`](./examples/) você encontra referências de implementação para cada etapa deste desafio.
+- Soma receitas, despesas e gastos por categoria.
+- Mostra o andamento da reserva de emergência.
+- Explica os produtos financeiros cadastrados que combinam com o perfil apresentado.
+- Responde somente com as informações disponíveis nos arquivos do projeto.
+- Informa quando não há dados suficientes para responder com segurança.
 
----
+## Como funciona
 
-## O Que Você Deve Entregar
+1. O usuário envia uma pergunta pelo chat.
+2. A aplicação lê os dados fictícios da pasta `data/`.
+3. O Norman calcula o resumo financeiro e monta um contexto com perfil, metas, gastos e produtos.
+4. Esse contexto, junto das regras de segurança, é enviado ao modelo escolhido na OpenRouter.
+5. A resposta é exibida no chat.
 
-### 1. Documentação do Agente
+## Dados utilizados
 
-Defina **o que** seu agente faz e **como** ele funciona:
+| Arquivo | Conteúdo |
+| --- | --- |
+| `data/transacoes.csv` | Entradas e saídas financeiras. |
+| `data/perfil_investidor.json` | Perfil, renda, metas e reserva de emergência. |
+| `data/produtos_financeiros.json` | Produtos que o Norman pode apresentar. |
+| `data/historico_atendimento.csv` | Histórico fictício de atendimentos. |
 
-- **Caso de Uso:** Qual problema financeiro ele resolve? (ex: consultoria de investimentos, planejamento de metas, alertas de gastos)
-- **Persona e Tom de Voz:** Como o agente se comporta e se comunica?
-- **Arquitetura:** Fluxo de dados e integração com a base de conhecimento
-- **Segurança:** Como evitar alucinações e garantir respostas confiáveis?
+## Como executar
 
-📄 **Template:** [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md)
+É necessário ter Python 3 instalado e uma chave de API da [OpenRouter](https://openrouter.ai/).
 
----
+```bash
+# Crie e ative um ambiente virtual (opcional, mas recomendado)
+python -m venv .venv
+.venv\Scripts\activate
 
-### 2. Base de Conhecimento
+# Instale as dependências
+pip install -r requirements.txt
 
-Utilize os **dados mockados** disponíveis na pasta [`data/`](./data/) para alimentar seu agente:
-
-| Arquivo | Formato | Descrição |
-|---------|---------|-----------|
-| `transacoes.csv` | CSV | Histórico de transações do cliente |
-| `historico_atendimento.csv` | CSV | Histórico de atendimentos anteriores |
-| `perfil_investidor.json` | JSON | Perfil e preferências do cliente |
-| `produtos_financeiros.json` | JSON | Produtos e serviços disponíveis |
-
-Você pode adaptar ou expandir esses dados conforme seu caso de uso.
-
-📄 **Template:** [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md)
-
----
-
-### 3. Prompts do Agente
-
-Documente os prompts que definem o comportamento do seu agente:
-
-- **System Prompt:** Instruções gerais de comportamento e restrições
-- **Exemplos de Interação:** Cenários de uso com entrada e saída esperada
-- **Tratamento de Edge Cases:** Como o agente lida com situações limite
-
-📄 **Template:** [`docs/03-prompts.md`](./docs/03-prompts.md)
-
----
-
-### 4. Aplicação Funcional
-
-Desenvolva um **protótipo funcional** do seu agente:
-
-- Chatbot interativo (sugestão: Streamlit, Gradio ou similar)
-- Integração com LLM (via API ou modelo local)
-- Conexão com a base de conhecimento
-
-📁 **Pasta:** [`src/`](./src/)
-
----
-
-### 5. Avaliação e Métricas
-
-Descreva como você avalia a qualidade do seu agente:
-
-**Métricas Sugeridas:**
-- Precisão/assertividade das respostas
-- Taxa de respostas seguras (sem alucinações)
-- Coerência com o perfil do cliente
-
-📄 **Template:** [`docs/04-metricas.md`](./docs/04-metricas.md)
-
----
-
-### 6. Pitch
-
-Grave um **pitch de 3 minutos** (estilo elevador) apresentando:
-
-- Qual problema seu agente resolve?
-- Como ele funciona na prática?
-- Por que essa solução é inovadora?
-
-📄 **Template:** [`docs/05-pitch.md`](./docs/05-pitch.md)
-
----
-
-## Ferramentas Sugeridas
-
-Todas as ferramentas abaixo possuem versões gratuitas:
-
-| Categoria | Ferramentas |
-|-----------|-------------|
-| **LLMs** | [ChatGPT](https://chat.openai.com/), [Copilot](https://copilot.microsoft.com/), [Gemini](https://gemini.google.com/), [Claude](https://claude.ai/), [Ollama](https://ollama.ai/) |
-| **Desenvolvimento** | [Streamlit](https://streamlit.io/), [Gradio](https://www.gradio.app/), [Google Colab](https://colab.research.google.com/) |
-| **Orquestração** | [LangChain](https://www.langchain.com/), [LangFlow](https://www.langflow.org/), [CrewAI](https://www.crewai.com/) |
-| **Diagramas** | [Mermaid](https://mermaid.js.org/), [Draw.io](https://app.diagrams.net/), [Excalidraw](https://excalidraw.com/) |
-
----
-
-## Estrutura do Repositório
-
-```
-📁 lab-agente-financeiro/
-│
-├── 📄 README.md
-│
-├── 📁 data/                          # Dados mockados para o agente
-│   ├── historico_atendimento.csv     # Histórico de atendimentos (CSV)
-│   ├── perfil_investidor.json        # Perfil do cliente (JSON)
-│   ├── produtos_financeiros.json     # Produtos disponíveis (JSON)
-│   └── transacoes.csv                # Histórico de transações (CSV)
-│
-├── 📁 docs/                          # Documentação do projeto
-│   ├── 01-documentacao-agente.md     # Caso de uso e arquitetura
-│   ├── 02-base-conhecimento.md       # Estratégia de dados
-│   ├── 03-prompts.md                 # Engenharia de prompts
-│   ├── 04-metricas.md                # Avaliação e métricas
-│   └── 05-pitch.md                   # Roteiro do pitch
-│
-├── 📁 src/                           # Código da aplicação
-│   └── app.py                        # (exemplo de estrutura)
-│
-├── 📁 assets/                        # Imagens e diagramas
-│   └── ...
-│
-└── 📁 examples/                      # Referências e exemplos
-    └── README.md
+# Inicie a aplicação
+streamlit run src/app.py
 ```
 
----
+Ao abrir a página no navegador, informe sua chave da OpenRouter na barra lateral. A chave é usada somente durante a sessão e não deve ser adicionada ao repositório.
 
-## Dicas Finais
+## Perguntas para testar
 
-1. **Comece pelo prompt:** Um bom system prompt é a base de um agente eficaz
-2. **Use os dados mockados:** Eles garantem consistência e evitam problemas com dados sensíveis
-3. **Foque na segurança:** No setor financeiro, evitar alucinações é crítico
-4. **Teste cenários reais:** Simule perguntas que um cliente faria de verdade
-5. **Seja direto no pitch:** 3 minutos passam rápido, vá ao ponto
+- `Quanto gastei com alimentação?`
+- `Quanto falta para a minha reserva de emergência?`
+- `Quais produtos disponíveis combinam com o meu perfil?`
+- `Qual será a Selic daqui a seis meses?`
+
+Na última pergunta, o comportamento esperado é informar que a base não possui dados para previsão.
+
+## Estrutura
+
+```text
+src/
+  app.py       Interface do chat em Streamlit
+  agente.py    Leitura dos dados, cálculos e chamada ao modelo
+  config.py    Configurações do modelo e da OpenRouter
+data/          Dados fictícios usados pelo agente
+docs/          Documentação complementar do Norman
+requirements.txt
+```
+
+## Limitações
+
+- A base contém dados fictícios e limitados a um cenário de demonstração.
+- As respostas dependem da disponibilidade da OpenRouter e do modelo selecionado.
+- O Norman não substitui orientação profissional financeira.
