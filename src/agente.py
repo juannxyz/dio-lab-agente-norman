@@ -31,9 +31,36 @@ def gerar_resumo_financeiro(transacoes, perfil):
 
     saldo_periodo = total_receitas - total_despesas
 
+    gastor_por_categoria = (
+        transacoes[transacoes["tipo"] == "saida"].groupby("categoria")["valor"].sum().to_dict()
+    )
+
+    gasto_alimentacao = gastor_por_categoria.get("alimentacao", 0)
+
+    meta_reserva = next(
+        meta
+        for meta in perfil["metas"]
+        if meta["meta"] == "Completar reserva de emergência"
+    )
+
+    falta_para_reserva = (
+        meta_reserva["valor_necessario"] - perfil["reserva_emergencia_atual"]
+    )
+
+    return{
+        "receitas": total_receitas,
+        "despesas": total_despesas,
+        "saldo_periodo": saldo_periodo,
+        "gastos_por_categoria": gastor_por_categoria,
+        "gasto_alimentacao": gasto_alimentacao,
+        "reserva_atual": perfil["reserva_emergencia_atual"], 
+        "meta_reserva": meta_reserva["valor_necessario"],
+        "falta_para_reserva": falta_para_reserva
+    }
+
+
 if __name__ == "__main__":
     transacoes, historico, perfil, produtos = carregar_dados()
+    resumo = gerar_resumo_financeiro(transacoes, perfil)
 
-    print(transacoes.head())
-    print(perfil["nome"])
-    print(produtos[0]["nome"])
+    print(resumo)
